@@ -1,4 +1,4 @@
-const RPS = require('./index.js')
+const { determineWinner, selectRandomWeapon, run } = require('./index.js')
 
 describe('RPS', () => {
 
@@ -6,24 +6,23 @@ describe('RPS', () => {
 
   beforeEach(() => {
     consoleSpy = jest.spyOn(console, 'log')
-    game = new RPS()
   })
 
   describe('#determineWinner', () => {
     it('Works with rock beating scissors', () => {
-      expect(game.determineWinner('rock', 'scissors')).toEqual('Rock wins!')
+      expect(determineWinner('rock', 'scissors')).toEqual('Rock wins!')
     })
 
     it('Works with scissors beating paper', () => {
-      expect(game.determineWinner('scissors', 'paper')).toEqual('Scissors wins!')
+      expect(determineWinner('scissors', 'paper')).toEqual('Scissors wins!')
     })
 
     it('Works with paper beating rock', () => {
-      expect(game.determineWinner('paper', 'rock')).toEqual('Paper wins!')
+      expect(determineWinner('paper', 'rock')).toEqual('Paper wins!')
     })
 
     it('Works with drawing', () => {
-      expect(game.determineWinner('rock', 'rock')).toEqual('Everyone\'s a loser!')
+      expect(determineWinner('rock', 'rock')).toEqual('Everyone\'s a loser!')
     })
   })
 
@@ -31,7 +30,7 @@ describe('RPS', () => {
     it('Selects a weapon at random', () => {
       const randomisationFunction = () => 0
 
-      expect(game.selectRandomWeapon(randomisationFunction)).toEqual('rock')
+      expect(selectRandomWeapon(randomisationFunction)).toEqual('rock')
     })
   })
 
@@ -43,8 +42,7 @@ describe('RPS', () => {
       on: (event, callback) => callback('rock')
     }
 
-    game = new RPS()
-    game.run(mockInterface)
+    run(mockInterface)
 
     expect(consoleSpy).toHaveBeenCalledWith('Rock wins!')
   })
