@@ -40,3 +40,7 @@ interface GameInterface {
   on: (event: string, callback: (userWeapon: string) => void) => void
 }
 ```
+
+Then we can give the `#run` function `gameInterface` parameter a type of `GameInterface`: `gameInterface: GameInterface`.
+
+Now we can create types for all the weapons, codifying them into our program! (TBC)
