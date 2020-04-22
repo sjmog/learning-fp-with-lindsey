@@ -27,10 +27,10 @@ describe('RPS', () => {
     })
   })
 
-  it('Selects a weapon at random', () => {
-    jest.spyOn(Math, 'random').mockReturnValue(0.1)
-
-    expect(game.selectRandomWeapon()).toEqual('rock')
+  describe('#selectRandomWeapon', () => {
+    it('Selects a weapon at random', () => {
+      expect(game.selectRandomWeapon(0)).toEqual('rock')
+    })
   })
 
   // This test should keep working.
