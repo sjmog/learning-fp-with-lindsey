@@ -65,4 +65,8 @@ Make sure you keep run() working while fixing up this method!
 
 ### The next level
 
-Now we have a bunch of pure functions and an entry point, we can distribute these across a bunch of lambdas if we want to.
+Now we have a bunch of pure functions and an entry point, we can distribute these across a bunch of lambdas if we want to, making them totally self-contained and stateless processes.
+
+### To TypeScript
+
+Let's move this to a more modern, typed language.
