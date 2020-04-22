@@ -14,7 +14,16 @@ function winner(weapon1, weapon2) {
 function computerWeapon(randomisationFunction) {
     return ['rock', 'scissors', 'paper'][Math.floor(randomisationFunction() * 3)];
 }
-function run(a, b, c) {
+function run(gameInterface, log, randomisationFunction) {
+    if (gameInterface === undefined) {
+        gameInterface = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
+    }
+    gameInterface.on('line', (userWeapon) => {
+        log(winner(userWeapon, computerWeapon(randomisationFunction)));
+    });
 }
 module.exports = { winner: winner, computerWeapon: computerWeapon, run: run };
 //# sourceMappingURL=index.js.map

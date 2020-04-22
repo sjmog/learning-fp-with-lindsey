@@ -1,5 +1,4 @@
 
-
 function winner(weapon1: string, weapon2: string): string {
   const WIN_CONDITIONS: {[weapon:string]:string}  = {
     'rock': 'scissors',
@@ -21,7 +20,18 @@ function computerWeapon(randomisationFunction: () => number) {
   return ['rock', 'scissors', 'paper'][Math.floor(randomisationFunction() * 3)]
 }
 
-function run(a:any,b:any,c:any) {
+function run(gameInterface:any,log:(msg: string) => void,randomisationFunction: () => number) {
+
+  if(gameInterface === undefined) {
+    gameInterface = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    })
+  }
+
+  gameInterface.on('line', (userWeapon) => {
+    log(winner(userWeapon, computerWeapon(randomisationFunction)))
+  })
 
 }
 module.exports = { winner:winner, computerWeapon:computerWeapon, run:run };
