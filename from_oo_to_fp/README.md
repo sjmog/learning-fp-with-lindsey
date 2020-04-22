@@ -30,3 +30,25 @@ Covering the following topics:
 Read the [Starter](./STARTER.md)
 
 We got two side effects: randomisation and console logging.
+
+## Flow
+
+- Make RPS in JS. (see requirements in zero/index.test.js)
+
+The principle here is that `main` is the only place you can introduce IO (or any other kind of side effects such as randomisation).
+
+We would only introduce any kind of side effect at the single point of execution: here, at the run() function.
+
+Two problems:
+
+- the IO is injected into the class constructor. It should be injected at run()
+- randomisation happens in selectRandomWeapon. It should be injected at run()
+- determineWinner contains console.log() side effects. The console should be injected at run()
+
+The general principle here is to push side effects to the edge of the program: the entry point, `run()`. It's the one point of entry; the interface to the public world. That way, the core is composed of pure, deterministic functions.
+
+We'll see the benefit by removing a bunch of stubs from our existing tests.
+
+Our test on run() will act as a kind of integration test for the program. There will be tests for other methods, but they'll be independent.
+
+- Go function-by-function, making them pure by extracting side effects up to `run()`.
