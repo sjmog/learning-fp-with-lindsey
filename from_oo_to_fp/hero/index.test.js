@@ -29,7 +29,9 @@ describe('RPS', () => {
 
   describe('#selectRandomWeapon', () => {
     it('Selects a weapon at random', () => {
-      expect(game.selectRandomWeapon(0)).toEqual('rock')
+      const randomisationFunction = () => 0
+
+      expect(game.selectRandomWeapon(randomisationFunction)).toEqual('rock')
     })
   })
 

@@ -28,13 +28,13 @@ class RPS {
     return winner[0].toUpperCase() + winner.slice(1, -1) + "!"
   }
 
-  selectRandomWeapon(index) {
-    return ['rock', 'scissors', 'paper'][index]
+  selectRandomWeapon(randomisationFunction) {
+    return ['rock', 'scissors', 'paper'][randomisationFunction()]
   }
 
   run() {
     this.gameInterface.on('line', (line) => {
-      console.log(this.determineWinner(line, this.selectRandomWeapon(Math.floor(Math.random() * 3))))
+      console.log(this.determineWinner(line, this.selectRandomWeapon(() => Math.floor(Math.random() * 3))))
     })
   }
 
