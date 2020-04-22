@@ -1,15 +1,8 @@
 const readline = require('readline');
 
 class RPS {
-  constructor(gameInterface) {
-    this.gameInterface = gameInterface;
+  constructor() {
 
-    if(this.gameInterface === undefined) {
-      this.gameInterface = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-      })
-    }
   }
 
   WIN_CONDITIONS = {
@@ -32,8 +25,15 @@ class RPS {
     return ['rock', 'scissors', 'paper'][Math.floor(randomisationFunction() * 3)]
   }
 
-  run() {
-    this.gameInterface.on('line', (line) => {
+  run(gameInterface) {
+    if(gameInterface === undefined) {
+      gameInterface = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+      })
+    }
+
+    gameInterface.on('line', (line) => {
       console.log(this.determineWinner(line, this.selectRandomWeapon(() => Math.random())))
     })
   }

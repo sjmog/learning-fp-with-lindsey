@@ -43,8 +43,8 @@ describe('RPS', () => {
       on: (event, callback) => callback('rock')
     }
 
-    game = new RPS(mockInterface)
-    game.run()
+    game = new RPS()
+    game.run(mockInterface)
 
     expect(consoleSpy).toHaveBeenCalledWith('Rock wins!')
   })
