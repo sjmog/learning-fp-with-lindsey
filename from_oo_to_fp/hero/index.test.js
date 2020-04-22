@@ -1,50 +1,43 @@
-const { determineWinner, selectRandomWeapon, run } = require('./index.js')
+const { winner, computerWeapon, run } = require('./index.js')
 
 describe('RPS', () => {
-
-  let consoleSpy, game;
-
-  beforeEach(() => {
-    consoleSpy = jest.spyOn(console, 'log')
-  })
-
-  describe('#determineWinner', () => {
+  describe('#winner', () => {
     it('Works with rock beating scissors', () => {
-      expect(determineWinner('rock', 'scissors')).toEqual('Rock wins!')
+      expect(winner('rock', 'scissors')).toEqual('Rock wins!')
     })
 
     it('Works with scissors beating paper', () => {
-      expect(determineWinner('scissors', 'paper')).toEqual('Scissors wins!')
+      expect(winner('scissors', 'paper')).toEqual('Scissors wins!')
     })
 
     it('Works with paper beating rock', () => {
-      expect(determineWinner('paper', 'rock')).toEqual('Paper wins!')
+      expect(winner('paper', 'rock')).toEqual('Paper wins!')
     })
 
     it('Works with drawing', () => {
-      expect(determineWinner('rock', 'rock')).toEqual('Everyone\'s a loser!')
+      expect(winner('rock', 'rock')).toEqual('Everyone\'s a loser!')
     })
   })
 
-  describe('#selectRandomWeapon', () => {
+  describe('#computerWeapon', () => {
     it('Selects a weapon at random', () => {
       const randomisationFunction = () => 0
 
-      expect(selectRandomWeapon(randomisationFunction)).toEqual('rock')
+      expect(computerWeapon(randomisationFunction)).toEqual('rock')
     })
   })
 
   // This test should keep working.
   it('the user can select a weapon', () => {
-    jest.spyOn(Math, 'random').mockReturnValue(0.4) // scissors
+    consoleSpy = jest.spyOn(console, 'log')
+    const mockRandomisationFunction = () => 0.4
 
     const mockInterface = {
       on: (event, callback) => callback('rock')
     }
 
-    run(mockInterface)
+    run(mockInterface, console.log, mockRandomisationFunction)
 
     expect(consoleSpy).toHaveBeenCalledWith('Rock wins!')
   })
-
 });

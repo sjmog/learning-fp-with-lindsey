@@ -1,6 +1,6 @@
 const readline = require('readline');
 
-function determineWinner(weapon1, weapon2) {
+function winner(weapon1, weapon2) {
   const WIN_CONDITIONS = {
     'rock': 'scissors',
     'scissors': 'paper',
@@ -16,11 +16,11 @@ function determineWinner(weapon1, weapon2) {
   return winner[0].toUpperCase() + winner.slice(1, -1) + "!"
 }
 
-function selectRandomWeapon(randomisationFunction) {
+function computerWeapon(randomisationFunction) {
   return ['rock', 'scissors', 'paper'][Math.floor(randomisationFunction() * 3)]
 }
 
-function run(gameInterface) {
+function run(gameInterface, log, randomisationFunction) {
   if(gameInterface === undefined) {
     gameInterface = readline.createInterface({
       input: process.stdin,
@@ -28,9 +28,9 @@ function run(gameInterface) {
     })
   }
 
-  gameInterface.on('line', (line) => {
-    console.log(determineWinner(line, selectRandomWeapon(() => Math.random())))
+  gameInterface.on('line', (userWeapon) => {
+    log(winner(userWeapon, computerWeapon(randomisationFunction)))
   })
 }
 
-module.exports = { determineWinner, selectRandomWeapon, run };
+module.exports = { winner, computerWeapon, run };

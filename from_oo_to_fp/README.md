@@ -60,3 +60,9 @@ By the time we're finished, we can remove all state in the class and make it a f
 To clean up determineWinner, we can just return a string. Then make run responsible for all the console logging.
 
 Make sure you keep run() working while fixing up this method!
+
+(See the commit messages for the rest)
+
+### The next level
+
+Now we have a bunch of pure functions and an entry point, we can distribute these across a bunch of lambdas if we want to.
