@@ -28,3 +28,5 @@ Covering the following topics:
 ## Sequence
 
 Read the [Starter](./STARTER.md)
+
+We got two side effects: randomisation and console logging.
