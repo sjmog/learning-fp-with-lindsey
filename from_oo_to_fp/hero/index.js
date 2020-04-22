@@ -20,13 +20,12 @@ class RPS {
 
   determineWinner(weapon1, weapon2) {
     if(weapon1 === weapon2) {
-      console.log('Everyone\'s a loser!')
-      return;
+      return 'Everyone\'s a loser!';
     }
 
     const winner = this.WIN_CONDITIONS[weapon1] === weapon2 ? `${weapon1} wins!` : `${weapon2} wins!`
   
-    console.log(winner[0].toUpperCase() + winner.slice(1, -1) + "!")
+    return winner[0].toUpperCase() + winner.slice(1, -1) + "!"
   }
 
   selectRandomWeapon() {
@@ -35,7 +34,7 @@ class RPS {
 
   run() {
     this.gameInterface.on('line', (line) => {
-      this.determineWinner(line, this.selectRandomWeapon())
+      console.log(this.determineWinner(line, this.selectRandomWeapon()))
     })
   }
 

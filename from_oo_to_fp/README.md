@@ -52,3 +52,11 @@ We'll see the benefit by removing a bunch of stubs from our existing tests.
 Our test on run() will act as a kind of integration test for the program. There will be tests for other methods, but they'll be independent.
 
 - Go function-by-function, making them pure by extracting side effects up to `run()`.
+
+By the time we're finished, we can remove all state in the class and make it a function!
+
+### determineWinner
+
+To clean up determineWinner, we can just return a string. Then make run responsible for all the console logging.
+
+Make sure you keep run() working while fixing up this method!

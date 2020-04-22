@@ -9,28 +9,22 @@ describe('RPS', () => {
     game = new RPS()
   })
 
-  it('Works with rock beating scissors', () => {
-    game.determineWinner('rock', 'scissors')
+  describe('#determineWinner', () => {
+    it('Works with rock beating scissors', () => {
+      expect(game.determineWinner('rock', 'scissors')).toEqual('Rock wins!')
+    })
 
-    expect(consoleSpy).toHaveBeenCalledWith('Rock wins!')
-  })
+    it('Works with scissors beating paper', () => {
+      expect(game.determineWinner('scissors', 'paper')).toEqual('Scissors wins!')
+    })
 
-  it('Works with scissors beating paper', () => {
-    game.determineWinner('scissors', 'paper')
+    it('Works with paper beating rock', () => {
+      expect(game.determineWinner('paper', 'rock')).toEqual('Paper wins!')
+    })
 
-    expect(consoleSpy).toHaveBeenCalledWith('Scissors wins!')
-  })
-
-  it('Works with paper beating rock', () => {
-    game.determineWinner('paper', 'rock')
-
-    expect(consoleSpy).toHaveBeenCalledWith('Paper wins!')
-  })
-
-  it('Works with drawing', () => {
-    game.determineWinner('rock', 'rock')
-
-    expect(consoleSpy).toHaveBeenCalledWith('Everyone\'s a loser!')
+    it('Works with drawing', () => {
+      expect(game.determineWinner('rock', 'rock')).toEqual('Everyone\'s a loser!')
+    })
   })
 
   it('Selects a weapon at random', () => {
