@@ -70,3 +70,12 @@ Now we have a bunch of pure functions and an entry point, we can distribute thes
 ### To TypeScript
 
 Let's move this to a more modern, typed language.
+
+### Reusable functions
+
+Now we've made a bunch of pure functions, we can re-use them! We can even compose new functionality out of our existing functions (This might work better in a different context)
+
+(Example context)
+
+- Authentication - start with it all in the controller, each time sending different responses to the server or the client. The functional way is that each call to the auth returns a call to the monad...?
+- Monads help to make an API purely-typed.

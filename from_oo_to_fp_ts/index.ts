@@ -1,3 +1,8 @@
+const readline = require('readline');
+
+interface GameInterface {
+  on: (event: string, callback: (userWeapon: string) => void) => void
+}
 
 function winner(weapon1: string, weapon2: string): string {
   const WIN_CONDITIONS: {[weapon:string]:string}  = {
@@ -20,7 +25,7 @@ function computerWeapon(randomisationFunction: () => number) {
   return ['rock', 'scissors', 'paper'][Math.floor(randomisationFunction() * 3)]
 }
 
-function run(gameInterface:any,log:(msg: string) => void,randomisationFunction: () => number) {
+function run(gameInterface:GameInterface ,log:(msg: string) => void,randomisationFunction: () => number) {
 
   if(gameInterface === undefined) {
     gameInterface = readline.createInterface({
@@ -29,7 +34,7 @@ function run(gameInterface:any,log:(msg: string) => void,randomisationFunction: 
     })
   }
 
-  gameInterface.on('line', (userWeapon) => {
+  gameInterface.on('line', (userWeapon: string) => {
     log(winner(userWeapon, computerWeapon(randomisationFunction)))
   })
 

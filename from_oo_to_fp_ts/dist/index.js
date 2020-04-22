@@ -1,4 +1,5 @@
 "use strict";
+const readline = require('readline');
 function winner(weapon1, weapon2) {
     const WIN_CONDITIONS = {
         'rock': 'scissors',

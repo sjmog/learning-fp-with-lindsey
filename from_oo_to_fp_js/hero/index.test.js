@@ -29,7 +29,7 @@ describe('RPS', () => {
 
   // This test should keep working.
   it('the user can select a weapon', () => {
-    consoleSpy = jest.spyOn(console, 'log')
+    const consoleSpy = jest.spyOn(console, 'log')
     const mockRandomisationFunction = () => 0.4
 
     const mockInterface = {
